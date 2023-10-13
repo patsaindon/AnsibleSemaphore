@@ -6,9 +6,10 @@
   hosts: all
   tasks:
 
-    - name: Set hostname on conf file
-      lineinfile:
-        dest: /etc/teste/linux/zabbix_agentd.conf
-        regexp: ^Hostname=.*
-        insertafter: ^# Hostname=
-        line: Hostname={{ ansible_hostname }}
+    - name: Get hostname
+      shell: echo $HOSTNAME
+      register: result
+
+    - name: Print the var
+      debug:
+        var: result.stdout
