@@ -6,40 +6,42 @@
 version: '2'
 
 # gather_facts: false
-become: yes
-tasks:
-# FACTS ################################################################## 
-  name: 'Set Known Facts'
-  set_fact:
-    smb_root: 
-    - "music"
-    - "movies"
-    - "tv"
-    excl: "*.mp3,*.mp4,*.mkv, *.m4a"
+  - hosts: unraid
+    # gather_facts: false
+    become: yes
+    tasks:
+      # FACTS ##################################################################                                                                                                             #####
+      - name: 'Set Known Facts'
+        set_fact:
+          smb_root: 
+          - "music"
+          - "movies"
+          - "tv"
+          excl: "*.mp3,*.mp4,*.mkv"
 
-# CORE (MANDATORY) #######################################################
-# Delete files
-  name: Delete files # find mnt/user/downloads/"{{ item }}"/ -type f -not \( -name 'file1.jpg' -or -name 'file2.png' -or -name 'file3.pdf' -or -name 'file4.zip' \) -delete
-  shell: find /mnt/user/downloads/"{{ item }}"/ -type f -not \( -name '*.mp3' -or -name '*.mp4' -or -name '*.mkv' \) -delete
-  with_items:
-    - "music"
-    - "movies"
-    - "tv" 
+      # CORE (MANDATORY) #######################################################                                                                                                             #####
+      # Delete files
+      - name: Delete files # find mnt/user/downloads/"{{ item }}"/ -type f -not \( -name 'file1.jpg' -or -name 'file2.png' -or -name 'file3.pdf' -or -name 'file4.zip' \) -delete
+        shell: find /mnt/user/downloads/"{{ item }}"/ -type f -not \( -name '*.mp3' -or -name '*.mp4' -or -name '*.mkv' \) -delete
+        with_items:
+          - "music"
+          - "movies"
+          - "tv" 
+      
+      # Delete empty folders
+      - name: Delete empty folders
+        shell: find /mnt/user/downloads/"{{ item }}"/* -empty -type d -delete
+        with_items:
+          - "music"
+          - "movies"
+          - "tv"
+        ignore_errors: yes 
 
-# Delete empty folders
-  name: Delete empty folders
-  shell: find /mnt/user/downloads/"{{ item }}"/* -empty -type d -delete
-  with_items:
-    - "music"
-    - "movies"
-    - "tv"
-  ignore_errors: yes 
-
-# Move folders
-  name: Move folders 
-  shell: mv /mnt/user/downloads/"{{ item }}"/* /mnt/user/"{{ item }}"/
-  with_items:
-    - "isos"
-    - "ps4" 
-    - "tutorials"
-  ignore_errors: yes
+      # Move folders
+      - name: Move folders 
+        shell: mv /mnt/user/downloads/"{{ item }}"/* /mnt/user/"{{ item }}"/
+        with_items:
+          - "isos"
+          - "ps4" 
+          - "tutorials"
+        ignore_errors: yes
