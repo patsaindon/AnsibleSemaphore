@@ -6,7 +6,7 @@
 
   tasks:
     # FACTS ##################################################################                                                                                                             #####
-    - name: Build nginx 
+    - name: Update VueTorrent Commands
       shell: |
         cd /mnt/user/appdata/qbittorrent/VueTorrent/
         git pull
