@@ -6,7 +6,7 @@
 version: '2'
 
 # gather_facts: false
-  - hosts: unraid
+  - hosts: Unraid
     # gather_facts: false
     become: yes
     tasks:
