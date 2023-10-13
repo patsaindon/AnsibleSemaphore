@@ -17,7 +17,7 @@
     # CORE (MANDATORY) #######################################################                                                                                                             #####
     # Delete files
     - name: Delete files # find mnt/user/downloads/"{{ item }}"/ -type f -not \( -name 'file1.jpg' -or -name 'file2.png' -or -name 'file3.pdf' -or -name 'file4.zip' \) -delete
-      shell: find /mnt/user/downloads/"{{ item }}"/ -type f -not \( -name '*.mp3' -or -name '*.mp4' -or -name '*.mkv' \) -delete
+      shell: find /mnt/user/downloads/"{{ item }}"/ -type f -not \( -name '*.mp3' -or -name '*.mp4' -or -name '*.mkv' -or -name '*.m4a'\) -delete
       with_items:
         - "music"
         - "movies"
