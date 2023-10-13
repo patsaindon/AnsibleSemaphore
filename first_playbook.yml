@@ -1,9 +1,10 @@
 ---
 
 - name: Network Getting Started First Playbook
-  connection: ansible.netcommon.network_cli
+  connection: ssh
   gather_facts: false
   hosts: all
+
   tasks:
 
     - name: Get hostname
