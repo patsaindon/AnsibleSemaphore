@@ -1,0 +1,12 @@
+---
+
+- name: Update VueTorrent
+  gather_facts: false
+  hosts: all
+
+  tasks:
+    # FACTS ##################################################################                                                                                                             #####
+    - name: Build nginx 
+      shell: |
+        cd /mnt/user/appdata/qbittorrent/VueTorrent/
+        git pull
