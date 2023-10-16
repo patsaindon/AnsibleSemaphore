@@ -1,0 +1,13 @@
+---
+
+- name: Disk SpaceCheck Disk Space Usage
+  gather_facts: false
+  hosts: all
+
+  tasks:
+    # FACTS ##################################################################                                                                                                             #####
+    - name: Disk usage from command module
+      command: df -h
+      register: space
+    - debug:
+            var: space.stdout_lines
