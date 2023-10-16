@@ -9,6 +9,6 @@
     - name: Ansible find file examples
       find:
         paths: "/"
-        patterns: "requirements.yml"
+        patterns: "requirements.*"
         recurse: yes
       register: files_matched
