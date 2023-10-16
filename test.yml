@@ -8,7 +8,7 @@
     # FACTS ##################################################################                                                                                                             #####
     - name: Ansible find file examples
       find:
-        paths: "/"
+        paths: "."
         patterns: "requirements.*"
         recurse: yes
       register: files_matched
