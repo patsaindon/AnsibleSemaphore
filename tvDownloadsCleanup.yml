@@ -1,0 +1,19 @@
+---
+
+- name: TV Downloads Cleanup Older than 10 days
+  gather_facts: false
+  hosts: all
+
+  tasks:
+    # FACTS ##################################################################                                                                                                             #####
+    - name: find all files that are older than 10 days
+      find:
+        paths: /mnt/user/downloads/tv
+        age: 10d
+        recursive: yes
+      register: filesOlderThan10
+    - name: remove older than 10
+      file:
+        path: "{{ item.path }}" 
+        state: absent
+      with_items: "{{ (filesOlderThan10.files }}"
