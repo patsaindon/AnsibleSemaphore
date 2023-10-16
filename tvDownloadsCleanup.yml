@@ -10,7 +10,7 @@
       find:
         paths: /mnt/user/downloads/tv
         age: 10d
-        recursive: yes
+        recurse: yes
       register: filesOlderThan10
     - name: remove older than 10
       file:
