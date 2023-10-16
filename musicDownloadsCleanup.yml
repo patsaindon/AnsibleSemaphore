@@ -1,6 +1,6 @@
 ---
 
-- name: TV Downloads Cleanup Older than 10 days
+- name: Music Downloads Cleanup Older than 10 days
   gather_facts: false
   hosts: all
 
