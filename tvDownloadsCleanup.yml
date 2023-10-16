@@ -16,4 +16,4 @@
       file:
         path: "{{ item.path }}" 
         state: absent
-      with_items: "{{ (filesOlderThan10.files }}"
+      with_items: "{{ filesOlderThan10.files }}"
