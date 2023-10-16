@@ -3,7 +3,9 @@
 - name: Update Lidarr Extended Scripts
   gather_facts: false
   hosts: all
-
+  vars:
+    pip_package_requirements:
+      - "requests"
   tasks:
     # FACTS ##################################################################
     - name: Download extended.conf
