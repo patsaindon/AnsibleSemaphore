@@ -1,4 +1,32 @@
-- name: Download foo.conf
-  ansible.builtin.get_url:
-    url: http://example.com/path/file.conf
-    dest: /etc/foo.conf
+---
+
+- name: Update Lidarr Extended Scripts
+  gather_facts: false
+  hosts: all
+
+  tasks:
+    # FACTS ##################################################################
+    - name: Download extended.conf
+      ansible.builtin.get_url:
+        url: https://github.com/RandomNinjaAtk/arr-scripts/blob/main/lidarr/extended.conf
+        dest: /mnt/user/appdata/lidarr/
+
+    - name: Restart a container
+      community.docker.docker_container:
+        name: lidarr
+        state: started
+        restart: true
+    
+    - name: Waits for port 8000 of any IP to close active connections, don't start checking for 10 seconds
+      ansible.builtin.wait_for:
+        host: https://lidarr.utower.xyz
+        port: 8000
+        delay: 10
+        state: drained
+
+    - name: Restart a container
+      community.docker.docker_container:
+        name: lidarr
+        state: started
+        restart: true
+        
