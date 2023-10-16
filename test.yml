@@ -1,0 +1,14 @@
+---
+
+- name: Test task
+  gather_facts: false
+  hosts: all
+
+  tasks:
+    # FACTS ##################################################################                                                                                                             #####
+    - name: Ansible find file examples
+      find:
+        paths: "/"
+        patterns: "requirements.yml"
+        recurse: yes
+      register: files_matched
