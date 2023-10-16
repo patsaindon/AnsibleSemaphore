@@ -20,7 +20,6 @@
     - name: Waits for port 8000 of any IP to close active connections, don't start checking for 10 seconds
       ansible.builtin.wait_for:
         host: https://lidarr.utower.xyz
-        port: 8000
         delay: 30
         state: drained
 
