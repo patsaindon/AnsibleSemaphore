@@ -21,7 +21,7 @@
       ansible.builtin.wait_for:
         host: https://lidarr.utower.xyz
         port: 8000
-        delay: 10
+        delay: 30
         state: drained
 
     - name: Restart a container
