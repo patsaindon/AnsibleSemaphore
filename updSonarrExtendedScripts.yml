@@ -8,7 +8,7 @@
     # FACTS ##################################################################
     - name: Unraid Bootstrap Commands
       shell: |
-        curl https://github.com/RandomNinjaAtk/arr-scripts/blob/main/sonarr/extended.conf -o /mnt/user/appdata/sonarr/extended.conf
+        curl -LJO https://github.com/RandomNinjaAtk/arr-scripts/blob/main/sonarr/extended.conf -o /mnt/user/appdata/sonarr/extended.conf
 
     - name: Restart a container
       community.docker.docker_container:
