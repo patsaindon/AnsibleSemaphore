@@ -33,7 +33,7 @@
 
     - name: Restart a container
       community.docker.docker_container:
-        name: {{ container_name }}
+        name: "{{ container_name }}"
         state: started
         
     - name: Waits for connections, don't start checking for 30 seconds
