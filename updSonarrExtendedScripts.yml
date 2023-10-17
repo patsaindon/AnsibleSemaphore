@@ -6,7 +6,7 @@
   vars:
     container_name: "sonarr"
     host_ip: "192.168.2.16"
-    port: "8989"
+    app_port: "8989"
 
   tasks:
     # FACTS ##################################################################
@@ -40,7 +40,7 @@
       ansible.builtin.wait_for:
         host: "{{ host_ip }}"
         delay: 30
-        port: "{{ port }}"
+        port: "{{ app_port }}"
 
     - name: Restart a container
       community.docker.docker_container:
@@ -52,7 +52,7 @@
       ansible.builtin.wait_for:
         host: "{{ host_ip }}"
         delay: 30
-        port: "{{ port }}"
+        port: "{{ app_port }}"
 
     - name: Restart a container
       community.docker.docker_container:
