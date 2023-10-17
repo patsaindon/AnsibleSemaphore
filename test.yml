@@ -5,10 +5,10 @@
   hosts: all
   vars:
     container_name: "radarr"
-    
+
   tasks:
     # FACTS ##################################################################                                                                                                             #####
     - name: Update Extended Scripts
       shell: |
-        wget 'https://raw.githubusercontent.com/RandomNinjaAtk/arr-scripts/main/"{{ container_name }}"/extended.conf' >> '/mnt/user/appdata/"{{ container_name }}"/extended.conf'
+        wget 'https://raw.githubusercontent.com/RandomNinjaAtk/arr-scripts/main/"{{ container_name }}"/extended.conf' >> '/mnt/user/appdata/extended.conf'
     
