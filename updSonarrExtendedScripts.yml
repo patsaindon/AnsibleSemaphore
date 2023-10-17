@@ -19,9 +19,9 @@
     
     - name: Waits for connections, don't start checking for 30 seconds
       ansible.builtin.wait_for:
-        host: https://sonarr.utower.xyz
+        host: 192.168.2.16
         delay: 30
-        state: drained
+        port: 8989
 
     - name: Restart a container
       community.docker.docker_container:
