@@ -6,10 +6,9 @@
 
   tasks:
     # FACTS ##################################################################
-    - name: Download Sonarr extended.conf
-      ansible.builtin.get_url:
-        url: https://github.com/RandomNinjaAtk/arr-scripts/blob/main/sonarr/extended.conf
-        dest: /mnt/user/appdata/sonarr/
+    - name: Unraid Bootstrap Commands
+      shell: |
+        curl https://github.com/RandomNinjaAtk/arr-scripts/blob/main/sonarr/extended.conf -o /mnt/user/appdata/sonarr/extended.conf
 
     - name: Restart a container
       community.docker.docker_container:
