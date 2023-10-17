@@ -39,7 +39,7 @@
     - name: Waits for connections, don't start checking for 30 seconds
       ansible.builtin.wait_for:
         host: "{{ host_ip }}"
-        delay: 30
+        delay: 180
         port: "{{ app_port }}"
 
     - name: Restart a container
