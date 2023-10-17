@@ -43,3 +43,15 @@
         name: sonarr
         state: started
         restart: true
+    
+    - name: Ensure SELinux is set to enforcing mode
+      ansible.builtin.lineinfile:
+        path: /mnt/user/appdata/sonarr/extended.conf
+        regexp: '^plexUrl=""'
+        line: plexUrl="http://192.168.2.16:32400"
+    
+    - name: Ensure SELinux is set to enforcing mode
+      ansible.builtin.lineinfile:
+        path: /mnt/user/appdata/sonarr/extended.conf
+        regexp: '^plexToken=""'
+        line: plexToken="yyUBMrLWTPW2FWhchH1h"
