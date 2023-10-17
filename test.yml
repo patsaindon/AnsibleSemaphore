@@ -14,4 +14,4 @@
 
     - name: Print return information from the previous task
       ansible.builtin.debug:
-        msg: {{ space }}
+        msg: "{{ space }}"
