@@ -10,5 +10,5 @@
     # FACTS ##################################################################                                                                                                             #####
     - name: Update Extended Scripts
       shell: |
-        curl  https://raw.githubusercontent.com/RandomNinjaAtk/arr-scripts/main/radarr/extended.conf --output  /mnt/user/appdata/extended.conf
+        curl  https://raw.githubusercontent.com/RandomNinjaAtk/arr-scripts/main/{{ container_name }}/extended.conf --output  /mnt/user/appdata/extended.conf
     
