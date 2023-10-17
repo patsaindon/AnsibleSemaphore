@@ -8,7 +8,7 @@
     # FACTS ##################################################################                                                                                                             #####
     - name: Lidarr Empty Freyr Cache
       community.docker.docker_container_exec:
-        container: Lidarr
+        container: lidarr
         command: /bin/bash -c "rm ./root/.cache/FreyrCLI/*"
         chdir: /root
       register: result
