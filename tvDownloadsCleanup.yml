@@ -3,12 +3,22 @@
 - name: TV Downloads Cleanup Older than 10 days
   gather_facts: false
   hosts: all
+  vars:
+    target_dir: "/mnt/user/downloads/tv"
 
   tasks:
-    # FACTS ##################################################################                                                                                                             #####
+    # FACTS ##################################################################
+    - name: Check sufficient free space in directory
+      command: "du -hs {{ target_dir }}"
+      register: space
+
+    - name: Print return information from the previous task
+      ansible.builtin.debug:
+        msg: "{{ space.stdout }}"
+    
     - name: find all files that are older than 10 days
       find:
-        paths: /mnt/user/downloads/tv
+        paths: "{{ target_dir }}"
         age: 10d
         recurse: yes
       register: filesOlderThan10
