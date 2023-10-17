@@ -3,12 +3,12 @@
 - name: Test task
   gather_facts: false
   hosts: all
-
+  vars:
+    container_name: "radarr"
+    
   tasks:
     # FACTS ##################################################################                                                                                                             #####
-    - name: Ansible find file examples
-      find:
-        paths: "."
-        patterns: "requirements.*"
-        recurse: yes
-      register: files_matched
+    - name: Update Extended Scripts
+      shell: |
+        wget 'https://raw.githubusercontent.com/RandomNinjaAtk/arr-scripts/main/"{{ container_name }}"/extended.conf' >> '/mnt/user/appdata/"{{ container_name }}"/extended.conf'
+    
