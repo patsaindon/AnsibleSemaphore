@@ -15,18 +15,18 @@
       shell: |
         wget https://raw.githubusercontent.com/RandomNinjaAtk/arr-scripts/main/sonarr/extended.conf >> /mnt/user/appdata/sonarr/extended.conf
     
-    - name: Ensure SELinux is set to enforcing mode
+    - name: Set plexUrl in extended.conf
       ansible.builtin.lineinfile:
         path: /mnt/user/appdata/sonarr/extended.conf
         regexp: '^plexUrl=""'
         line: plexUrl="http://192.168.2.16:32400"
     
-    - name: Ensure SELinux is set to enforcing mode
+    - name: Set plexToken in extended.conf
       ansible.builtin.lineinfile:
         path: /mnt/user/appdata/sonarr/extended.conf
         regexp: '^plexToken=""'
         line: plexToken="yyUBMrLWTPW2FWhchH1h"
-        
+
     - name: Restart a container
       community.docker.docker_container:
         name: sonarr
