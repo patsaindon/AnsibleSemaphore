@@ -19,6 +19,48 @@
       shell: |
         wget "https://raw.githubusercontent.com/RandomNinjaAtk/arr-scripts/main/"{{ container_name }}"/extended.conf" >> "/mnt/user/appdata/"{{ container_name }}"/extended.conf"
     
+    - name: Set downloadPath in extended.conf
+      ansible.builtin.lineinfile:
+        path: "/mnt/user/appdata/{{ container_name }}/extended.conf"
+        regexp: '^downloadPath=""'
+        line: downloadPath="/downloads/extended"
+    
+    - name: Set videoPath in extended.conf
+      ansible.builtin.lineinfile:
+        path: "/mnt/user/appdata/{{ container_name }}/extended.conf"
+        regexp: '^videoPath=""'
+        line: videoPath="/musicvideos/"
+    
+    - name: Set enableUnmappedFilesCleaner in extended.conf
+      ansible.builtin.lineinfile:
+        path: "/mnt/user/appdata/{{ container_name }}/extended.conf"
+        regexp: '^enableUnmappedFilesCleaner=""'
+        line: enableUnmappedFilesCleaner="false"
+    
+    - name: Set enableUnmappedFilesCleaner in extended.conf
+      ansible.builtin.lineinfile:
+        path: "/mnt/user/appdata/{{ container_name }}/extended.conf"
+        regexp: '^enableUnmappedFilesCleaner=""'
+        line: enableUnmappedFilesCleaner="false"
+    
+    - name: Set addDeezerTopArtists in extended.conf
+      ansible.builtin.lineinfile:
+        path: "/mnt/user/appdata/{{ container_name }}/extended.conf"
+        regexp: '^addDeezerTopArtists=""'
+        line: addDeezerTopArtists="true"
+    
+    - name: Set addDeezerTopAlbumArtists in extended.conf
+      ansible.builtin.lineinfile:
+        path: "/mnt/user/appdata/{{ container_name }}/extended.conf"
+        regexp: '^addDeezerTopAlbumArtists=""'
+        line: addDeezerTopAlbumArtists="true"
+    
+    - name: Set addDeezerTopTrackArtists in extended.conf
+      ansible.builtin.lineinfile:
+        path: "/mnt/user/appdata/{{ container_name }}/extended.conf"
+        regexp: '^addDeezerTopTrackArtists=""'
+        line: addDeezerTopTrackArtists="true"
+                                       
     - name: Set plexUrl in extended.conf
       ansible.builtin.lineinfile:
         path: "/mnt/user/appdata/{{ container_name }}/extended.conf"
