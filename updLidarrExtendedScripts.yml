@@ -3,29 +3,59 @@
 - name: Update Lidarr Extended Scripts
   gather_facts: false
   hosts: all
+  vars:
+    container_name: "lidarr"
+    host_ip: "192.168.2.16"
+    app_port: "8686"
 
   tasks:
     # FACTS ##################################################################
-    - name: Download Lidarr extended.conf
-      ansible.builtin.get_url:
-        url: https://github.com/RandomNinjaAtk/arr-scripts/blob/main/lidarr/extended.conf
-        dest: /mnt/user/appdata/lidarr/
+    - name: Stop a container
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        state: stopped
+        
+    - name: Update Sonarr Extended Scripts
+      shell: |
+        wget "https://raw.githubusercontent.com/RandomNinjaAtk/arr-scripts/main/{{ container_name }}/extended.conf" >> "/mnt/user/appdata/{{ container_name }}/extended.conf"
+    
+    - name: Set plexUrl in extended.conf
+      ansible.builtin.lineinfile:
+        path: "/mnt/user/appdata/{{ container_name }}/extended.conf"
+        regexp: '^plexUrl=""'
+        line: plexUrl="http://'{{ host_ip }}':32400"
+    
+    - name: Set plexToken in extended.conf
+      ansible.builtin.lineinfile:
+        path: "/mnt/user/appdata/{{ container_name }}/extended.conf"
+        regexp: '^plexToken=""'
+        line: plexToken="yyUBMrLWTPW2FWhchH1h"
 
     - name: Restart a container
       community.docker.docker_container:
-        name: lidarr
+        name: "{{ container_name }}"
         state: started
-        restart: true
-    
+        
     - name: Waits for connections, don't start checking for 30 seconds
       ansible.builtin.wait_for:
-        host: https://lidarr.utower.xyz
+        host: "{{ host_ip }}"
         delay: 30
-        state: drained
+        port: "{{ app_port }}"
 
     - name: Restart a container
       community.docker.docker_container:
-        name: lidarr
+        name: "{{ container_name }}"
         state: started
         restart: true
         
+    - name: Waits for connections, don't start checking for 30 seconds
+      ansible.builtin.wait_for:
+        host: "{{ host_ip }}"
+        delay: 30
+        port: "{{ app_port }}"
+
+    - name: Restart a container
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        state: started
+        restart: true
