@@ -1,0 +1,14 @@
+---
+
+- name: Unraid Bootstrap
+  gather_facts: false
+  hosts: all
+
+  tasks:
+    # FACTS ##################################################################                                                                                                             #####
+    - name: Unraid Bootstrap Commands
+      shell: |
+        curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+        python3 get-pip.py
+        pip3 install requests
+        pip3 install 'urllib3<2'

@@ -6,7 +6,7 @@
 
   tasks:
     # FACTS ##################################################################
-    - name: Download extended.conf
+    - name: Download Sonarr extended.conf
       ansible.builtin.get_url:
         url: https://github.com/RandomNinjaAtk/arr-scripts/blob/main/sonarr/extended.conf
         dest: /mnt/user/appdata/sonarr/
@@ -17,7 +17,7 @@
         state: started
         restart: true
     
-    - name: Waits for close active connections, don't start checking for 10 seconds
+    - name: Waits for connections, don't start checking for 30 seconds
       ansible.builtin.wait_for:
         host: https://sonarr.utower.xyz
         delay: 30
