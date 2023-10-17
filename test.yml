@@ -4,11 +4,13 @@
   gather_facts: false
   hosts: all
   vars:
-    container_name: "sonarr"
+    target_dir: "/mnt/user/downloads/tv"
 
   tasks:
     # FACTS ##################################################################                                                                                                             #####
-    - name: Update Extended Scripts
-      shell: |
-        curl  https://raw.githubusercontent.com/RandomNinjaAtk/arr-scripts/main/{{ container_name }}/extended.conf --output  /mnt/user/appdata/extended.conf
-    
+    - name: Check sufficient free space in directory
+      command: "du -hs {{ target_dir }}"
+      register: space
+
+    - set_fact:
+        free_space_bytes: "{{ (space.stdout_lines[1] | split)[3] }}"
