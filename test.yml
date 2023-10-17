@@ -14,5 +14,4 @@
 
     - name: Print return information from the previous task
       ansible.builtin.debug:
-        var: space
-        verbosity: 2
+        msg: space
