@@ -13,6 +13,7 @@
         name:
           - guestfs-tools
           - python3-libvirt
+          - python3-lxc
         state: present
 
     - name: Get VMs list
