@@ -4,7 +4,7 @@
   gather_facts: false
   hosts: all
   vars:
-    container_name: "radarr"
+    container_name: "sonarr"
 
   tasks:
     # FACTS ##################################################################                                                                                                             #####
