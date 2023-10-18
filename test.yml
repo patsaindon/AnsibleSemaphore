@@ -14,10 +14,19 @@
       clone: yes
       update: yes
 
+  - name: Check if WebUI\RootFolder is already defined
+    lineinfile:
+      state: absent
+      path: "/mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf"
+      regexp: "WebUI\RootFolder=/config/VueTorrent"
+    check_mode: true
+    changed_when: false # This just makes things look prettier in the logs
+    register: check
+
   - name: Set WebUI\RootFolder in qBittorrent.conf
     ansible.builtin.lineinfile:
       path: "/mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf"
       regexp: '^WebUI\RootFolder=""'
       line: WebUI\RootFolder=/config/VueTorrent
-      force: no    
+    when: check.found == 0   
 ...
