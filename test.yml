@@ -7,12 +7,18 @@
     path: /mnt/user/appdata/qbittorrent/VueTorrent/
 
   tasks:
+  - name: Task name
+    stat:
+      path: '{{ path }}'
+    register: register_name
+
   - name: Clone a github repository
     git:
       repo: https://github.com/WDaan/VueTorrent.git
       dest: /mnt/user/appdata/qbittorrent/
       clone: yes
       update: yes
+    when: not register_name.stat.exists
 
   - name: Check if WebUI\RootFolder is already defined
     lineinfile:
