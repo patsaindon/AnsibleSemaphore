@@ -2,6 +2,7 @@
 
 - name: Test task
   gather_facts: false
+  hosts: all
   vars:
     target_dir: "/mnt/user/downloads/tv/*"
 
