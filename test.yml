@@ -9,14 +9,4 @@
     ansible.builtin.lineinfile:
       path: '/mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf'
       regexp: '^WebUI\RootFolder=/config/VueTorrent'
-      state: absent
-    check_mode: true
-    register: check
-
-  - name: Set WebUI\RootFolder in qBittorrent.conf
-    ansible.builtin.lineinfile:
-      path: /mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf
-      regexp: '^WebUI\RootFolder=""'
-      line: WebUI\RootFolder=/config/VueTorrent
-    when: check.found == 0   
 ... 
