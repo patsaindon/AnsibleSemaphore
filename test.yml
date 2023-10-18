@@ -3,8 +3,6 @@
 - name: Test task
   gather_facts: false
   hosts: all
-  vars:
-    path: "/mnt/user/appdata/"
 
   tasks:
     - name: Disk Usage

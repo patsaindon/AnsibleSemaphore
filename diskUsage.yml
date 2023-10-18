@@ -1,15 +1,13 @@
 ---
 
-- name: Disk Usage
+- name: Disk Usage appdata
   gather_facts: false
   hosts: all
-  vars:
-    path: "/mnt/user/appdata/"
-
+  
   tasks:
     - name: Disk Usage
       shell: |
-        du -sk '{{ path }}'' | sort -g | awk '{ 
+        du -sk /mnt/user/appdata/* | sort -g | awk '{ 
         numBytes = $1 * 1024; 
         numUnits = split("B K M G T P", unit); 
         num = numBytes; 
@@ -33,6 +31,6 @@
         api_args:
           chat_id: 5073078093
           parse_mode: "html"
-          text: "{{ space.stdout }}"
+          text: "{{ disk_usage.stdout }}"
           disable_web_page_preview: true
           disable_notification: false
