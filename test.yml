@@ -19,5 +19,5 @@
       path: "/mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf"
       regexp: '^WebUI\RootFolder=""'
       line: WebUI\RootFolder=/config/VueTorrent
-    force: no    
+      force: no    
 ...
