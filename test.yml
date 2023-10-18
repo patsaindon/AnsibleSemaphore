@@ -2,15 +2,18 @@
 
 - name: Test task
   gather_facts: false
-  hosts: all
+  vars:
+    target_dir: "/mnt/user/downloads/tv/*"
 
   tasks:
-    # FACTS ##################################################################                                                                                                             #####
-    - name: Disk usage from command module
-      command: df -h
+    # FACTS ##################################################################
+    - name: Check sufficient free space in directory
+      command: "du -hs {{ target_dir }}"
       register: space
-    - debug:
-            var: space.stdout_lines
+
+    - name: Print return information from the previous task
+      ansible.builtin.debug:
+        msg: "{{ space.stdout }}"
 
     - name: Send notify to Telegram
       community.general.telegram:
@@ -18,6 +21,6 @@
         api_args:
           chat_id: 5073078093
           parse_mode: "html"
-          text: "{{ space.stdout_lines }}"
+          text: "{{ space.stdout }}"
           disable_web_page_preview: true
           disable_notification: false
