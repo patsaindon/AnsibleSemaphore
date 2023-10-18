@@ -7,8 +7,9 @@
   tasks:
   - name: Check if WebUIRootFolder is already defined
     ansible.builtin.lineinfile:
-      path: '/mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf'
-      regexp: '^WebUI\RootFolder=/config/VueTorrent'
-      state: absent
+      path: /mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf
+      regexp: '^WebUI\RootFolder='
+      line: WebUI\RootFolder=/config/VueTorrent
     register: line_check
+    check_mode: true
 ... 
