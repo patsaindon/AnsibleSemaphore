@@ -3,27 +3,13 @@
 - name: Test task
   gather_facts: false
   hosts: all
-  vars:
-    path: /mnt/user/appdata/qbittorrent/VueTorrent/
 
   tasks:
-  - name: Task name
-    stat:
-      path: '{{ path }}'
-    register: register_name
-
-  - name: Clone a github repository
-    git:
-      repo: https://github.com/WDaan/VueTorrent.git
-      dest: /mnt/user/appdata/qbittorrent/
-      clone: yes
-      update: yes
-    when: not register_name.stat.exists
-
   - name: Check if WebUIRootFolder is already defined
     ansible.builtin.lineinfile:
       path: '/mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf'
       regexp: '^WebUI\RootFolder=/config/VueTorrent'
+      state: absent
     check_mode: true
     register: check
 
@@ -33,4 +19,4 @@
       regexp: '^WebUI\RootFolder=""'
       line: WebUI\RootFolder=/config/VueTorrent
     when: check.found == 0   
-...
+... 
