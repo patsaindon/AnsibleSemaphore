@@ -19,4 +19,10 @@
       clone: yes
       update: yes
     when: not register_name.stat.exists
+
+  - name: Set WebUI\RootFolder in qBittorrent.conf
+    ansible.builtin.lineinfile:
+      path: "/mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf"
+      regexp: '^WebUI\RootFolder=""'
+      line: WebUI\RootFolder=/config/VueTorrent    
 ...
