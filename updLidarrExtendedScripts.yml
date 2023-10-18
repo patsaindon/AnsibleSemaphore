@@ -2,7 +2,7 @@
 
 - name: Update Lidarr Extended Scripts
   gather_facts: false
-  hosts: all
+  hosts: unraid
   vars:
     container_name: "lidarr"
     host_ip: "192.168.2.16"

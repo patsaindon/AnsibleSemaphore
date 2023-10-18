@@ -2,7 +2,7 @@
 
 - name: Update Sonarr Extended Scripts
   gather_facts: false
-  hosts: all
+  hosts: unraid
   vars:
     container_name: "sonarr"
     host_ip: "192.168.2.16"

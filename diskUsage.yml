@@ -2,7 +2,7 @@
 
 - name: Disk Usage appdata
   gather_facts: false
-  hosts: all
+  hosts: unraid
   
   tasks:
     - name: Disk Usage
@@ -34,3 +34,4 @@
           text: "{{ disk_usage.stdout }}"
           disable_web_page_preview: true
           disable_notification: false
+...          

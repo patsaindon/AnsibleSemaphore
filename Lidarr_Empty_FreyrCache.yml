@@ -2,7 +2,7 @@
 
 - name: Lidarr Empty Freyr Cache
   gather_facts: false
-  hosts: all
+  hosts: unraid
 
   tasks:
     # FACTS ##################################################################                                                                                                             #####

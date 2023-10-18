@@ -2,7 +2,7 @@
 
 - name: Update VueTorrent
   gather_facts: false
-  hosts: all
+  hosts: unraid
   vars:
     path: /mnt/user/appdata/qbittorrent/VueTorrent/
 

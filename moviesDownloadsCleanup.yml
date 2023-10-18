@@ -2,7 +2,7 @@
 
 - name: Movies Downloads Cleanup Older than 10 days
   gather_facts: false
-  hosts: all
+  hosts: unraid
 
   tasks:
     # FACTS ##################################################################                                                                                                             #####

@@ -2,7 +2,7 @@
 
 - name: Docker Prune
   gather_facts: false
-  hosts: all
+  hosts: unraid
 
   tasks:
   - name: Prune everything

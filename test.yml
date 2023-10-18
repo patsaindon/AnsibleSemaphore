@@ -2,7 +2,7 @@
 
 - name: Test task
   gather_facts: false
-  hosts: all
+  hosts: unraid
 
   tasks:
   - name: Check if WebUIRootFolder is already defined

@@ -2,7 +2,7 @@
 
 - name: Update Radarr Extended Scripts
   gather_facts: false
-  hosts: all
+  hosts: unraid
   vars:
     container_name: "radarr"
     host_ip: "192.168.2.16"

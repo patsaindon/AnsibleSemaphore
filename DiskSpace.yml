@@ -2,7 +2,7 @@
 
 - name: Disk SpaceCheck Disk Space Usage
   gather_facts: false
-  hosts: all
+  hosts: unraid
 
   tasks:
     # FACTS ##################################################################                                                                                                             #####
