@@ -4,7 +4,7 @@
   gather_facts: false
   hosts: all
   vars:
-    target_dir: "/mnt/user/downloads/tv/*"
+    target_dir: "/mnt/user/downloads/tv"
 
   tasks:
     # FACTS ##################################################################
