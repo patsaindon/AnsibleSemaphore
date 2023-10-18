@@ -40,7 +40,7 @@
       with_items: "{{ filesOlderThan10.files }}"
 
     - name: Delete Empty Folders
-      command: "find /mnt/user/downloads/tv/* -empty -type d -delete"
+      command: "find {{ target_dir }} -empty -type d -delete"
 
     - name: Check sufficient free space in directory
       command: "du -hs {{ target_dir }}"
