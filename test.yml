@@ -12,9 +12,11 @@
       path: '{{ path }}'
     register: register_name
   
-  - name: Task name 2
-    file:
-      path: '{{ path }}'
-      state: touch
+  - name: Clone a github repository
+    git:
+      repo: https://github.com/WDaan/VueTorrent.git
+      dest: /mnt/user/appdata/qbittorrent/
+      clone: yes
+      update: yes
     when: not register_name.stat.exists
 ...
