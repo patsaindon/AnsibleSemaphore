@@ -13,4 +13,4 @@
       dest: '{{ path }}'
       clone: yes
       update: yes
-    when: not register_name.stat.exists
+---
