@@ -24,7 +24,7 @@
     lineinfile:
       state: absent
       path: /mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf
-      regexp: WebUI\RootFolder=/config/VueTorrent
+      regexp: '^WebUI\RootFolder=/config/VueTorrent'
     check_mode: true
     changed_when: false # This just makes things look prettier in the logs
     register: check
