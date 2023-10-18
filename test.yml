@@ -17,6 +17,7 @@
         token: '5270927352:AAHHbj1KefSx7XYffQke_NQGRxoo_L9q7YQ'
         api_args:
           chat_id: 5073078093
+          parse_mode: "html"
           text: "{{ space.stdout_lines }}"
           disable_web_page_preview: true
           disable_notification: false
