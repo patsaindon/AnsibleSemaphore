@@ -10,5 +10,5 @@
       path: '/mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf'
       regexp: '^WebUI\RootFolder=/config/VueTorrent'
       state: present
-    changed_when: false
+    changed_when: true
 ... 
