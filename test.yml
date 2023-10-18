@@ -3,34 +3,18 @@
 - name: Test task
   gather_facts: false
   hosts: all
+  vars:
+    path: /mnt/user/appdata/qbittorrent/VueTorrent/
 
   tasks:
-    - name: Disk Usage
-      shell: |
-        du -sk /mnt/user/appdata/* | sort -g | awk '{ 
-        numBytes = $1 * 1024; 
-        numUnits = split("B K M G T P", unit); 
-        num = numBytes; 
-        iUnit = 0; 
-        while(num >= 1024 && iUnit + 1 < numUnits) { 
-            num = num / 1024; 
-            iUnit++; 
-        } 
-        $1 = sprintf( ((num == 0) ? "%6d%s " : "%6.1f%s "), num, unit[iUnit + 1]);
-        print $0; 
-        }'
-      register: disk_usage
-
-    - name: Print return information from the previous task
-      ansible.builtin.debug:
-        msg: "{{ disk_usage }}"
-
-    - name: Send notify to Telegram
-      community.general.telegram:
-        token: '5270927352:AAHHbj1KefSx7XYffQke_NQGRxoo_L9q7YQ'
-        api_args:
-          chat_id: 5073078093
-          parse_mode: "html"
-          text: "{{ disk_usage.stdout }}"
-          disable_web_page_preview: true
-          disable_notification: false
+  - name: Task name
+    stat:
+      path: '{{ path }}'
+    register: register_name
+  
+  - name: Task name 2
+    file:
+      path: '{{ path }}'
+      state: touch
+    when: not register_name.stat.exists
+...
