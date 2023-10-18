@@ -22,7 +22,7 @@
 
   - name: Check if WebUI\RootFolder is already defined
     ansible.builtin.lineinfile:
-      state: absent
+      state: present
       path: '/mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf'
       regexp: '^WebUI\RootFolder=/config/VueTorrent'
     check_mode: true
