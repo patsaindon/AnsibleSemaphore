@@ -20,7 +20,7 @@
       update: yes
     when: not register_name.stat.exists
 
-  - name: Check if WebUI\RootFolder is already defined
+  - name: Check if WebUIRootFolder is already defined
     ansible.builtin.lineinfile:
       state: present
       path: '/mnt/user/appdata/qbittorrent/qBittorrent/qBittorrent.conf'
