@@ -11,5 +11,5 @@
       regexp: '^WebUI\RootFolder='
       line: WebUI\RootFolder=/config/VueTorrent
     register: line_check
-    check_mode: true
+
 ... 
