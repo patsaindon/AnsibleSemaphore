@@ -33,6 +33,6 @@
         api_args:
           chat_id: 5073078093
           parse_mode: "html"
-          text: "{{ space.stdout }}"
+          text: "{{ disk_usage.stdout }}"
           disable_web_page_preview: true
           disable_notification: false
