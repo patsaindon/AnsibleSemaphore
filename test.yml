@@ -4,7 +4,7 @@
   gather_facts: false
   hosts: all
   vars:
-    path: "/mnt/user/appdata/"
+    path: "/mnt/user/appdata/*"
 
   tasks:
     - name: Disk Usage
