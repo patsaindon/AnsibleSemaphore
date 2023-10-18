@@ -9,7 +9,7 @@
   tasks:
     - name: Disk Usage
       shell: |
-        du -sk '{{ path }}'' | sort -g | awk '{ 
+        du -sk '{{ path }}' | sort -g | awk '{ 
         numBytes = $1 * 1024; 
         numUnits = split("B K M G T P", unit); 
         num = numBytes; 
