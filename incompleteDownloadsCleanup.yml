@@ -1,0 +1,57 @@
+---
+
+- name: TV Downloads Cleanup Older than 10 days
+  gather_facts: false
+  hosts: unraid
+  vars:
+    target_dir: "/mnt/user/downloads/incomplete/"
+
+  tasks:
+    # FACTS ##################################################################
+    - name: Check sufficient free space in directory
+      command: "du -hs {{ target_dir }}"
+      register: space
+
+    - name: Send notify to Telegram
+      community.general.telegram:
+        token: '5270927352:AAHHbj1KefSx7XYffQke_NQGRxoo_L9q7YQ'
+        api_args:
+          chat_id: 5073078093
+          parse_mode: "html"
+          text: "{{ space.stdout }}"
+          disable_web_page_preview: true
+          disable_notification: false
+
+    - name: Print return information from the previous task
+      ansible.builtin.debug:
+        msg: "{{ space.stdout }}"
+    
+    - name: find all files that are older than 10 days
+      find:
+        paths: "{{ target_dir }}"
+        age: 10d
+        recurse: yes
+      register: filesOlderThan10
+
+    - name: remove older than 10
+      file:
+        path: "{{ item.path }}" 
+        state: absent
+      with_items: "{{ filesOlderThan10.files }}"
+
+    - name: Delete Empty Folders
+      command: "find {{ target_dir }} -empty -type d -delete"
+    
+    - name: Check sufficient free space in directory
+      command: "du -hs {{ target_dir }}"
+      register: newspace
+
+    - name: Send notify to Telegram
+      community.general.telegram:
+        token: '5270927352:AAHHbj1KefSx7XYffQke_NQGRxoo_L9q7YQ'
+        api_args:
+          chat_id: 5073078093
+          parse_mode: "html"
+          text: "{{ newspace.stdout }}"
+          disable_web_page_preview: true
+          disable_notification: false
