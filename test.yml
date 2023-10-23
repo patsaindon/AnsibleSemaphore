@@ -5,6 +5,10 @@
   hosts: unraid
 
   tasks:
+    - name: Install requirements
+    shell: |
+      pip3 install 
+
   - name: Get count of 'beers' nodes
     community.general.xml:
       path: /mnt/user/appdata/radarr/config.xml
