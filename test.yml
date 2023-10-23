@@ -8,17 +8,22 @@
   - name: Install requirements
     shell: |
       pip3 install lxml
-      
-  - name: Get count of 'beers' nodes
+
+# How to read an attribute value and access it in Ansible
+  - name: Read an element's attribute values
     community.general.xml:
       path: /mnt/user/appdata/radarr/config.xml
       xpath: /Config/ApiKey
-      count: true
-    register: ApiKey
+      content: attribute
+    register: xmlresp
+
+  - name: Show an attribute value
+    ansible.builtin.debug:
+      var: xmlresp.matches[0].validxhtml.validatedon
   
   - name: Print return information from the previous task
     ansible.builtin.debug:
-      msg: "{{ ApiKey }}"
+      msg: "{{xmlresp.matches[0].validxhtml.validatedon }}"
 
   - name: Send notify to Telegram
     community.general.telegram:
