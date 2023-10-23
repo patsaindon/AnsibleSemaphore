@@ -5,6 +5,10 @@
   hosts: unraid
 
   tasks:
+  - name: Install requirements
+    shell: |
+      pip3 install libvirt-python
+
   - name: List all VMs
     community.libvirt.virt:
       command: list_vms
