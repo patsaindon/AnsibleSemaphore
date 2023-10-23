@@ -7,8 +7,8 @@
   tasks:
   - name: Install requirements
     shell: |
-      pip3 install 
-
+      pip3 install lxml
+      
   - name: Get count of 'beers' nodes
     community.general.xml:
       path: /mnt/user/appdata/radarr/config.xml
@@ -16,3 +16,4 @@
       count: true
     register: ApiKey
 ... 
+
