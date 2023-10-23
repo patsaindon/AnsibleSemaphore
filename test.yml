@@ -7,7 +7,7 @@
   tasks:
   - name: Install requirements
     shell: |
-      pip3 install libvirt-python
+      pip install libvirt-python
 
   - name: List all VMs
     community.libvirt.virt:
