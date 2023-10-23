@@ -5,11 +5,17 @@
   hosts: unraid
 
   tasks:
-  - name: Gather the package facts
-    ansible.builtin.package_facts:
-      manager: auto
+  - name: Collect only facts returned by facter
+    ansible.builtin.setup:
+      gather_subset:
+        - '!all'
+        - '!<any valid subset>'
+        - facter
 
-  - name: Print the package facts
-    ansible.builtin.debug:
-      var: ansible_facts.packages 
+  - name: Filter and return only selected facts
+    ansible.builtin.setup:
+      filter:
+        - 'ansible_distribution'
+        - 'ansible_machine_id'
+        - 'ansible_*_mb' 
 ... 
