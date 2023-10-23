@@ -1,3 +1,5 @@
 ---
+pip plexapi
 git clone/pull
+curl get identifier
 shell python script
