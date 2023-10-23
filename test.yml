@@ -5,39 +5,11 @@
   hosts: unraid
 
   tasks:
-  - name: Install requirements
-    shell: |
-      pip3 install lxml
+  - name: Gather the package facts
+    ansible.builtin.package_facts:
+      manager: auto
 
-# How to read an attribute value and access it in Ansible
-  - name: Read an element's attribute values
-    community.general.xml:
-      path: /mnt/user/appdata/radarr/config.xml
-      xpath: /Config/ApiKey
-      content: text
-    register: radarr_apikey
-
-  - name: Show an attribute value
+  - name: Print the package facts
     ansible.builtin.debug:
-      var: radarr_apikey.matches
-  
-  - name: Print return information from the previous task
-    ansible.builtin.debug:
-      msg: "{{ radarr_apikey.matches }}"
-
-  - name: Send notify to Telegram
-    community.general.telegram:
-      token: '5270927352:AAHHbj1KefSx7XYffQke_NQGRxoo_L9q7YQ'
-      api_args:
-        chat_id: 5073078093
-        parse_mode: "html"
-        text: "{{ radarr_apikey.matches }}"
-        disable_web_page_preview: true
-        disable_notification: false  
+      var: ansible_facts.packages 
 ... 
-
-#/mnt/user/appdata/prowlarr/config.xml
-#/mnt/user/appdata/sonarr/config.xml
-#/mnt/user/appdata/radarr/config.xml
-#/mnt/user/appdata/lidarr/config.xml
-#cat /mnt/user/appdata/bazarr/config/config.ini
