@@ -14,16 +14,16 @@
     community.general.xml:
       path: /mnt/user/appdata/radarr/config.xml
       xpath: /Config/ApiKey
-      content: attribute
+      content: text
     register: radarr_apikey
 
   - name: Show an attribute value
     ansible.builtin.debug:
-      var: radarr_apikey
+      var: radarr_apikey.matches
   
   - name: Print return information from the previous task
     ansible.builtin.debug:
-      msg: "{{ radarr_apikey }}"
+      msg: "{{ radarr_apikey.matches }}"
 
   - name: Send notify to Telegram
     community.general.telegram:
@@ -31,7 +31,7 @@
       api_args:
         chat_id: 5073078093
         parse_mode: "html"
-        text: "{{ radarr_apikey }}"
+        text: "{{ radarr_apikey.matches }}"
         disable_web_page_preview: true
         disable_notification: false  
 ... 
