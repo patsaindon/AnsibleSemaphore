@@ -5,17 +5,8 @@
   hosts: unraid
 
   tasks:
-  - name: Collect only facts returned by facter
-    ansible.builtin.setup:
-      gather_subset:
-        - '!all'
-        - '!<any valid subset>'
-        - facter
-
-  - name: Filter and return only selected facts
-    ansible.builtin.setup:
-      filter:
-        - 'ansible_distribution'
-        - 'ansible_machine_id'
-        - 'ansible_*_mb' 
+  - name: List all VMs
+    community.libvirt.virt:
+      command: list_vms
+    register: all_vms
 ... 
