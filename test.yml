@@ -19,11 +19,11 @@
 
   - name: Show an attribute value
     ansible.builtin.debug:
-      var: xmlresp.matches[0].validxhtml.validatedon
+      var: xmlresp
   
   - name: Print return information from the previous task
     ansible.builtin.debug:
-      msg: "{{xmlresp.matches[0].validxhtml.validatedon }}"
+      msg: "{{ xmlresp }}"
 
   - name: Send notify to Telegram
     community.general.telegram:
@@ -31,7 +31,7 @@
       api_args:
         chat_id: 5073078093
         parse_mode: "html"
-        text: "{{ ApiKey.stdout }}"
+        text: "{{ xmlresp }}"
         disable_web_page_preview: true
         disable_notification: false  
 ... 
