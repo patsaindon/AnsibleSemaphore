@@ -1,5 +1,25 @@
----
-pip plexapi
-git clone/pull
-curl get identifier
-shell python script
+- name: Test task
+  gather_facts: false
+  hosts: unraid
+
+  tasks:
+  - name: Install requirements
+    shell: |
+      pip3 install plexapi
+
+  - name: Clone a github repository
+    git:
+      repo: https://github.com/YoonAddicting/PlexSmartPlaylistDeduplicator.git
+      dest: '/mnt/user/appdata/plex/'
+      clone: yes
+      update: yes
+
+  - name: Upgrading Software
+    expect:
+      command: python3 /mnt/user/appdata/plex/PlexSmartPlaylistDeduplicator/main.py
+      responses:
+        'Enter your username for Plex' : 'pat.saindon@gmail.com'
+        'Password' : 'uT0w3r33//'
+        'Enter the server identifier' : 'Tower'
+        'Enter the name of the playlist to remove duplicates from' : 'BestOf'
+... 
