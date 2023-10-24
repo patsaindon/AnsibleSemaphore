@@ -6,8 +6,9 @@
   hosts: unraid
 
   tasks:
-  - name: Check sufficient free space in directory
-    command: "du -hs /mnt/nvme_cache/*"
+  - name: Install requirements
+    shell: |
+      du -hs /mnt/nvme_cache/*
     register: space
 
   - name: Send notify to Telegram
