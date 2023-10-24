@@ -8,7 +8,7 @@
   tasks:
   - name: Install requirements
     shell: |
-      du -hs /mnt/nvme_cache/
+      du -h --max-depth=2 /mnt/nvme_cache/ 
     register: space
 
   - name: Send notify to Telegram
@@ -28,7 +28,7 @@
 
   - name: Install requirements
     shell: |
-      du -hs /mnt/nvme_cache/
+      du -h --max-depth=2 /mnt/nvme_cache/ 
     register: space
 
   - name: Send notify to Telegram
