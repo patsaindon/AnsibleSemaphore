@@ -6,7 +6,7 @@
 
   tasks:
   - name: Check sufficient free space in directory
-    command: "du -hs du -hs /mnt/nvme_cache/*"
+    command: "du -hs /mnt/nvme_cache/*"
     register: space
 
   - name: Send notify to Telegram
