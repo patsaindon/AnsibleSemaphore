@@ -25,6 +25,8 @@
     shell: |
       rsync -av /mnt/nvme_cache/movies/* /mnt/user0/movies/
       rm -R /mnt/nvme_cache/movies/*
+      rsync -av /mnt/nvme_cache/tv/* /mnt/user0/tv/
+      rm -R /mnt/nvme_cache/tv/*
 
   - name: Install requirements
     shell: |
