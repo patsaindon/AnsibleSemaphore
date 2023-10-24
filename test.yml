@@ -8,7 +8,7 @@
   tasks:
   - name: Install requirements
     shell: |
-      du -hs /mnt/nvme_cache/*
+      du -hs /mnt/nvme_cache/
     register: space
 
   - name: Send notify to Telegram
