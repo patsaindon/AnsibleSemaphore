@@ -6,9 +6,5 @@
 
   tasks:
   - debug:
-      var: ansible_facts["all_ipv6_addresses"]|type_debug
-  - debug:
-      var: ansible_facts["memory_mb"]|type_debug
-  - debug:
-      var: ansible_facts["machine"]|type_debug
+      var: ansible_facts
 ... 
