@@ -17,7 +17,7 @@
       clone: yes
       update: yes
 
-  - name: Upgrading Software
+  - name: Run script to remove duplicates
     expect:
       command: python3 /mnt/user/appdata/plex/PlexSmartPlaylistDeduplicator/main.py
       responses:
@@ -25,4 +25,5 @@
         'Password' : 'uT0w3r33//'
         'Enter the server identifier' : 'Tower'
         'Enter the name of the playlist to remove duplicates from' : 'BestOf'
+        
 ... 

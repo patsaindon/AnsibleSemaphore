@@ -8,5 +8,5 @@
   - name: Download file from a file path
     ansible.builtin.get_url:
       url: https://releases.ubuntu.com/23.10/ubuntu-23.10-live-server-amd64.iso?_ga=2.6807538.1574532934.1698252348-1039154012.1698252348
-      dest: /mn/user/isos/Ubuntu/ubuntu-23.10-live-server-amd64.iso
+      dest: /mnt/user/isos/Ubuntu/ubuntu-23.10-live-server-amd64.iso
 ...
