@@ -5,10 +5,10 @@
   become: true
   hosts: unraid
   vars:
-    plex_token: 5270927352:AAHHbj1KefSx7XYffQke_NQGRxoo_L9q7YQ
+    chat_token: 5270927352:AAHHbj1KefSx7XYffQke_NQGRxoo_L9q7YQ
 
   tasks:
-  - name: Install requirements
+  - name: Disk Usage
     shell: |
       du -h --max-depth=2 /mnt/nvme_cache/ | sort -g | awk '{ 
         numBytes = $1 * 1024; 
@@ -26,7 +26,7 @@
 
   - name: Send notify to Telegram
     community.general.telegram:
-      token: "{{ plex_token }}"
+      token: "{{ chat_token }}"
       api_args:
         chat_id: 5073078093
         parse_mode: html
@@ -34,14 +34,14 @@
         disable_web_page_preview: true
         disable_notification: false
 
-  - name: Install requirements
+  - name: Rsync
     shell: |
       rsync -av /mnt/nvme_cache/movies/* /mnt/user0/movies/
       rm -R /mnt/nvme_cache/movies/*
       rsync -av /mnt/nvme_cache/tv/* /mnt/user0/tv/
       rm -R /mnt/nvme_cache/tv/*
 
-  - name: Install requirements
+  - name: Disk Usage
     shell: |
       du -h --max-depth=2 /mnt/nvme_cache/ | sort -g | awk '{ 
         numBytes = $1 * 1024; 
@@ -59,7 +59,7 @@
 
   - name: Send notify to Telegram
     community.general.telegram:
-      token: "{{ plex_token }}"
+      token: "{{ chat_token }}"
       api_args:
         chat_id: 5073078093
         parse_mode: html
