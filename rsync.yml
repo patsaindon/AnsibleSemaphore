@@ -4,6 +4,8 @@
   gather_facts: false
   become: true
   hosts: unraid
+  vars:
+    plex_token: 5270927352:AAHHbj1KefSx7XYffQke_NQGRxoo_L9q7YQ
 
   tasks:
   - name: Install requirements
@@ -24,10 +26,10 @@
 
   - name: Send notify to Telegram
     community.general.telegram:
-      token: '5270927352:AAHHbj1KefSx7XYffQke_NQGRxoo_L9q7YQ'
+      token: "{{ plex_token }}"
       api_args:
         chat_id: 5073078093
-        parse_mode: "html"
+        parse_mode: html
         text: "{{ space.stdout }}"
         disable_web_page_preview: true
         disable_notification: false
@@ -57,10 +59,10 @@
 
   - name: Send notify to Telegram
     community.general.telegram:
-      token: '5270927352:AAHHbj1KefSx7XYffQke_NQGRxoo_L9q7YQ'
+      token: "{{ plex_token }}"
       api_args:
         chat_id: 5073078093
-        parse_mode: "html"
+        parse_mode: html
         text: "{{ space.stdout }}"
         disable_web_page_preview: true
         disable_notification: false
