@@ -71,7 +71,7 @@
       ansible.builtin.lineinfile:
         path: "/mnt/user/appdata/{{ container_name }}/extended.conf"
         regexp: '^plexToken=""'
-        line: plexToken="yyUBMrLWTPW2FWhchH1h"
+        line: plexToken=""
 
     - name: Restart a container
       community.docker.docker_container:
