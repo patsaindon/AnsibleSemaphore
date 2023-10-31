@@ -12,3 +12,6 @@
         python3 get-pip.py
         pip3 install requests
         pip3 install 'urllib3<2'
+        hdparm -W 1 /dev/sdc
+        hdparm -W 1 /dev/sdb
+...
