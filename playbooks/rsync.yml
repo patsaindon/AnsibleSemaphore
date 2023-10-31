@@ -36,10 +36,8 @@
 
   - name: Rsync
     shell: |
-      rsync -av /mnt/nvme_cache/movies/* /mnt/user0/movies/
-      rm -R /mnt/nvme_cache/movies/*
-      rsync -av /mnt/nvme_cache/tv/* /mnt/user0/tv/
-      rm -R /mnt/nvme_cache/tv/*
+      rsync -av /mnt/user0/downloads/* /mnt/nvme_cache/downloads/
+      rm -R /mnt/user0/downloads
 
   - name: Disk Usage
     shell: |
