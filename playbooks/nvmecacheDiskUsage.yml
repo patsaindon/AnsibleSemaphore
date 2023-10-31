@@ -27,9 +27,9 @@
 
     - name: Send notify to Telegram
       community.general.telegram:
-        token: '5270927352:AAHHbj1KefSx7XYffQke_NQGRxoo_L9q7YQ'
+        token: ''
         api_args:
-          chat_id: 5073078093
+          chat_id: 
           parse_mode: "html"
           text: "{{ disk_usage.stdout }}"
           disable_web_page_preview: true
